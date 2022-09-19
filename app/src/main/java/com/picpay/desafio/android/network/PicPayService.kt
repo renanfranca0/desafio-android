@@ -3,12 +3,12 @@ package com.picpay.desafio.android.network
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.picpay.desafio.android.network.endpoint.UsersEndpoint
+import com.picpay.desafio.android.utils.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Api {
-    private val url = "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/"
+object PicPayService {
 
     private val gson: Gson by lazy { GsonBuilder().create() }
 
@@ -19,13 +19,14 @@ class Api {
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(url)
+            .baseUrl(BASE_URL)
             .client(okHttp)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
-    val service: UsersEndpoint by lazy {
+    // rever
+    val usersEndpoint: UsersEndpoint by lazy {
         retrofit.create(UsersEndpoint::class.java)
     }
 

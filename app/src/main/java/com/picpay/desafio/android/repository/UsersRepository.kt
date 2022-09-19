@@ -1,11 +1,15 @@
 package com.picpay.desafio.android.repository
 
-import com.picpay.desafio.android.model.User
+import com.picpay.desafio.android.database.UserDAO
 import com.picpay.desafio.android.network.PicPayService
+import javax.inject.Inject
 
-class UsersRepository {
+class UsersRepository @Inject constructor(private val userDao: UserDAO) {
 
-    suspend fun getUsers(): List<User> {
-        return PicPayService.usersEndpoint.getUsers()
+    val users = userDao.getAllUsers()
+
+    suspend fun refreshUsers() {
+        val users = PicPayService.usersEndpoint.getUsers()
+        userDao.insertAll(users)
     }
 }

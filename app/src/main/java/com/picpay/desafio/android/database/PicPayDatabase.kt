@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.dao
+package com.picpay.desafio.android.database
 
 import android.content.Context
 import androidx.room.Database
@@ -15,22 +15,4 @@ import com.picpay.desafio.android.model.User
 abstract class PicPayDatabase : RoomDatabase() {
 
     abstract fun userDAO(): UserDAO
-
-    companion object {
-        @Volatile
-        private var INSTANCE: PicPayDatabase? = null
-
-        fun getDatabase(context: Context): PicPayDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    PicPayDatabase::class.java,
-                    "picpay_database"
-                ).build()
-                INSTANCE = instance
-                return instance
-            }
-
-        }
-    }
 }
