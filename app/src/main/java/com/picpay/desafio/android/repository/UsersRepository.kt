@@ -1,15 +1,9 @@
 package com.picpay.desafio.android.repository
 
-import com.picpay.desafio.android.database.UserDAO
-import com.picpay.desafio.android.network.PicPayService
-import javax.inject.Inject
+import com.picpay.desafio.android.model.User
+import kotlinx.coroutines.flow.Flow
 
-class UsersRepository @Inject constructor(private val userDao: UserDAO) {
+interface UsersRepository {
 
-    val users = userDao.getAllUsers()
-
-    suspend fun refreshUsers() {
-        val users = PicPayService.usersEndpoint.getUsers()
-        userDao.insertAll(users)
-    }
+    suspend fun fetchUsers(): Flow<List<User>>
 }

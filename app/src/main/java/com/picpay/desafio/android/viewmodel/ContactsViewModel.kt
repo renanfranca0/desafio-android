@@ -3,6 +3,7 @@ package com.picpay.desafio.android.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.picpay.desafio.android.model.User
 import com.picpay.desafio.android.repository.UsersRepository
 import com.picpay.desafio.android.utils.StateResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +21,8 @@ class ContactsViewModel @Inject constructor(private val userRepository: UsersRep
     private val _stateView: MutableStateFlow<StateResult<Any>> = MutableStateFlow(StateResult.InProgress)
     val stateView = _stateView.asStateFlow()
 
-    val user = userRepository.users
+    private val _users: MutableStateFlow<List<User>> = MutableStateFlow(listOf())
+    val user = _users.asStateFlow()
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         _stateView.value = StateResult.Error(throwable.message.toString())
@@ -31,8 +33,10 @@ class ContactsViewModel @Inject constructor(private val userRepository: UsersRep
     fun loadUsers() {
         _stateView.value = StateResult.InProgress
         viewModelScope.launch(coroutineContextIO) {
-            userRepository.refreshUsers()
-            _stateView.value = StateResult.Sucess()
+            userRepository.fetchUsers().collect { users ->
+                _users.emit(users)
+                _stateView.value = StateResult.Sucess()
+            }
         }
     }
 

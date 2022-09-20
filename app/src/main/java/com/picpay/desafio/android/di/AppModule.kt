@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.picpay.desafio.android.database.PicPayDatabase
 import com.picpay.desafio.android.database.UserDAO
+import com.picpay.desafio.android.repository.UsersRepository
+import com.picpay.desafio.android.repository.UsersRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,5 +30,10 @@ object AppModule {
     @Provides
     fun provideUserDao(database: PicPayDatabase): UserDAO {
         return database.userDAO()
+    }
+
+    @Provides
+    fun provideUsersRepository(userDAO: UserDAO) : UsersRepository {
+        return UsersRepositoryImpl(userDAO)
     }
 }

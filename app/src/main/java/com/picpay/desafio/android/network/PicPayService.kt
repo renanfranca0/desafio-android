@@ -25,7 +25,6 @@ object PicPayService {
             .build()
     }
 
-    // rever
     val usersEndpoint: UsersEndpoint by lazy {
         retrofit.create(UsersEndpoint::class.java)
     }
