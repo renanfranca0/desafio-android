@@ -14,4 +14,8 @@ class UsersRepositoryImpl @Inject constructor(private val userDao: UserDAO) : Us
 
         return userDao.getAllUsers()
     }
+
+    override suspend fun getUser(userId: Int): Flow<User> {
+        return userDao.getUser(userId)
+    }
 }

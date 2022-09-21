@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.0'
+    id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
 }
 
@@ -63,6 +64,7 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation project(path: ':app')
 
     // Dagger - hilt

@@ -2,5 +2,9 @@
     <string name="app_name">PicPay</string>
     <string name="title">Contatos</string>
     <string name="error">Ocorreu um erro. Tente novamente.</string>
+    <string name="payment_method">Forma de pagamento:</string>
+    <string name="pay">Pagar</string>
+    <string name="value">999,89</string>
+    <string name="new_payment">Novo pagamento</string>
 
 </resources>

@@ -12,7 +12,7 @@ class UserListItemViewHolder(
     private val binding: ListItemUserBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(user: User) {
+    fun bind(user: User, clickListener: (Int) -> Unit) {
         binding.name.text = user.name
         binding.username.text = user.username
         binding.progressBar.visibility = View.VISIBLE
@@ -28,5 +28,11 @@ class UserListItemViewHolder(
                     binding.progressBar.visibility = View.GONE
                 }
             })
+
+        binding.root.setOnClickListener {
+            user.id?.also {
+                clickListener(it)
+            }
+        }
     }
 }

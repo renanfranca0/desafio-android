@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
@@ -97,7 +98,10 @@ class ContactsFragments : Fragment() {
         recyclerView = binding.recyclerView
         progressBar = binding.userListProgressBar
 
-        adapter = UserListAdapter()
+        adapter = UserListAdapter { userId ->
+            val action = ContactsFragmentsDirections.actionContactsFragmentsToNewPaymentFragment(userId)
+            findNavController().navigate(action)
+        }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

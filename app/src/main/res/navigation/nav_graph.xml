@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/contactsFragments">
 
     <fragment
         android:id="@+id/contactsFragments"
         android:name="com.picpay.desafio.android.view.ContactsFragments"
-        android:label="ContactsFragments" />
+        android:label="ContactsFragments" >
+        <action
+            android:id="@+id/action_contactsFragments_to_newPaymentFragment"
+            app:destination="@id/newPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPaymentFragment"
+        android:name="com.picpay.desafio.android.view.NewPaymentFragment"
+        android:label="@string/new_payment"
+        tools:layout="@layout/fragment_new_payment" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
