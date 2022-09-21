@@ -1,7 +1,10 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.viewmodel
 
-import com.picpay.desafio.android.viewmodel.ContactsViewModel
+import com.picpay.desafio.android.repository.FakeRepository
+import com.picpay.desafio.android.utils.StateResult
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -18,11 +21,11 @@ class ContactsViewModelTest {
 
     @Test
     fun `load users from viewModel, then check user state view`() = runTest {
-/*        assertTrue(contactsViewModel.user.value.isEmpty())
 
+        assertTrue(contactsViewModel.stateView.first() is StateResult.InProgress)
         contactsViewModel.loadUsers()
 
-        fakeRepository.emit(listOf(User("teste", "Renan", 0, "rnn")))
-        assertTrue(contactsViewModel.user.value.isNotEmpty())*/
+        assertTrue(contactsViewModel.user.first().isNotEmpty())
+        assertTrue(contactsViewModel.stateView.first() is StateResult.Sucess)
     }
 }

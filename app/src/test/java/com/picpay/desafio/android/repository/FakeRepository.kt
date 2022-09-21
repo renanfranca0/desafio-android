@@ -1,8 +1,7 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.repository
 
 import com.picpay.desafio.android.model.User
-import com.picpay.desafio.android.repository.UsersRepository
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class FakeRepository : UsersRepository {
@@ -18,7 +17,9 @@ class FakeRepository : UsersRepository {
     }
 
     override suspend fun fetchUsers() = fakeUsers
+    override suspend fun getUser(userId: Int): Flow<User> {
+        val user = fakeListUsers.find { it.id == userId }
+        return flow { emit(user ?: User()) }
+    }
 
-    private val myFlow = MutableSharedFlow<List<User>>()
-    suspend fun emit(listUsers: List<User>) = myFlow.emit(listUsers)
 }

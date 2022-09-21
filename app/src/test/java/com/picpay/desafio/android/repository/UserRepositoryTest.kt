@@ -1,6 +1,5 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.repository
 
-import com.picpay.desafio.android.repository.UsersRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
@@ -21,5 +20,12 @@ class UserRepositoryTest {
         val value = usersRepository.fetchUsers().first()
         assertTrue(value.isNotEmpty())
         assertTrue(value.size > 1)
+    }
+
+    @Test
+    fun `call user by id, then return only one user`() = runTest {
+        val value = usersRepository.getUser(1)
+
+        assertTrue(value.first().id == 1)
     }
 }
