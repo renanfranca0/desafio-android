@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/contactsFragments"
         android:name="com.picpay.desafio.android.view.ContactsFragments"
-        android:label="ContactsFragments" >
+        android:label="@string/contacts" >
         <action
             android:id="@+id/action_contactsFragments_to_newPaymentFragment"
             app:destination="@id/newPaymentFragment" />

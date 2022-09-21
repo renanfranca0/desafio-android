@@ -6,5 +6,6 @@
     <string name="pay">Pagar</string>
     <string name="value">999,89</string>
     <string name="new_payment">Novo pagamento</string>
+    <string name="contacts">Contatos</string>
 
 </resources>

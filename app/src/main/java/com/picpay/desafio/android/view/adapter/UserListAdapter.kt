@@ -8,7 +8,7 @@ import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.model.User
 import com.picpay.desafio.android.view.viewholder.UserListItemViewHolder
 
-class UserListAdapter(val clickListener: (Int) -> Unit) : RecyclerView.Adapter<UserListItemViewHolder>() {
+class UserListAdapter(private val clickListener: (Int) -> Unit) : RecyclerView.Adapter<UserListItemViewHolder>() {
 
     var users = emptyList<User>()
         set(value) {

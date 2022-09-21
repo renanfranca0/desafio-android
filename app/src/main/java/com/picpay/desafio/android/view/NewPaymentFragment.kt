@@ -47,7 +47,7 @@ class NewPaymentFragment : Fragment() {
         collects()
     }
 
-    fun collects() {
+    private fun collects() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.stateView.collect { stateResult ->

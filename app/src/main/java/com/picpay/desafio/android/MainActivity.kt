@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         binding.toolbar.setupWithNavController(navController)
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureDestinationListener() {
         destinationListener =
-            NavController.OnDestinationChangedListener { _, destination, arguments ->
+            NavController.OnDestinationChangedListener { _, destination, _ ->
                 if (destination.id == R.id.contactsFragments) {
                     binding.toolbar.visibility = View.GONE
                 } else {
